@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <title>Calcolatore CO₂ per Reso</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      background: linear-gradient(135deg, #f4f4f4, #e8e8e8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background-color: #ffffff;
+      padding: 2.5rem 3rem;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+    }
+    h1 {
+      color: #1e1e1e;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      margin: 0.5rem 0 1rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #007a3d;
+      color: white;
+      border: none;
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      width: 100%;
+    }
+    button:hover {
+      background-color: #005f2d;
+    }
+    .result {
+      margin-top: 1.5rem;
+      font-size: 1.2rem;
+      color: #1e1e1e;
+      background-color: #f0fdf4;
+      padding: 1rem;
+      border: 1px solid #ccebd8;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <p style="margin-bottom: 2rem; color: #666; font-size: 1rem; line-height: 1.5;">Scopri l'impatto ambientale del tuo reso. Inserisci il codice ordine per visualizzare le emissioni di CO₂ generate dalla spedizione di ritorno.</p>
+    <h1 style="font-size: 1.5rem; color: #2c2c2c; margin-bottom: 1rem;">Calcolo CO₂ del Reso</h1>
+    <input type="text" id="ordine" placeholder="Qual è l'ordine che desideri restituire?">
+    <br>
+    <button onclick="calcolaCO2()">Calcola CO₂</button>
+    <div class="result" id="risultato"></div>
+  </div>
+
+  <script>
+    const datiCO2 = {
+      "00786796": 2.31,
+      "00731154-X": 2.31,
+      "00792690": 15.35,
+      "00795972": 6.44,
+      "00745824": 14.03,
+      "00752547": 0.13,
+      "00753110": 14.03,
+      "00754000": 0.13,
+      "00755605": 0.13,
+      "00759717": 14.03,
+      "00761489": 14.03,
+      "00765337": 0.13,
+      "00765768": 0.13,
+      "00767948": 0.13,
+      "00770736": 0.13,
+      "00771117": 0.13,
+      "00775012": 0.13,
+      "00775128": 0.13,
+      "00775836": 0.13,
+      "00776270": 0.13,
+      "00777460": 0.13,
+      "00777682": 0.13,
+      "00778144": 0.13,
+      "00779041": 0.13,
+      "00780465": 0.13,
+      "00780661": 0.13,
+      "00782800": 0.13,
+      "00783159": 0.13,
+      "00784838": 0.13
+    };
+
+    function calcolaCO2() {
+      const ordine = document.getElementById("ordine").value.trim();
+      const co2 = datiCO2[ordine];
+      const risultato = document.getElementById("risultato");
+
+      if (co2) {
+        risultato.innerHTML = `♻️ Il reso per l'ordine <strong>${ordine}</strong> genererà circa <strong>${co2} kg di CO₂</strong>.<br><br><em>Un piccolo gesto può avere un grande impatto. Valuta con consapevolezza ogni scelta.</em>`;
+      } else {
+        risultato.innerHTML = "<span style='color: #cc0000;'>Ordine non trovato. Verifica il numero inserito.</span>";
+      }
+    }
+  </script>
+</body>
+</html>
